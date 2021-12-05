@@ -1,4 +1,47 @@
 import { object, number, string, TypeOf, array, date } from "zod";
+
+/**
+ * @openapi
+ * components:
+ *  schemas:
+ *    CreateTestInput:
+ *      type: object
+ *      required:
+ *        - testName
+ *        - duration
+ *        - questionLimit
+ *        - filePath
+ *      properties:
+ *        testName:
+ *          type: string
+ *          default: bangla 2nd papper
+ *        duration:
+ *          type: number
+ *          default: 25
+ *        questionLimit:
+ *          type: number
+ *          default: 25
+ *        filePath:
+ *          type: string
+ *          default: uploads/imageqwer.jpg
+ *    CreateTestResponse:
+ *      type: object
+ *      properties:
+ *        testName:
+ *          type: string
+ *        duration:
+ *          type: number
+ *        questionLimit:
+ *          type: number
+ *        filePath:
+ *          type: string
+ *        _id:
+ *          type: string
+ *        createdAt:
+ *          type: string
+ *        updatedAt:
+ *          type: string
+ */
 const payload = {
   body: object({
     testName: string({

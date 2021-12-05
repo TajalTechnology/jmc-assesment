@@ -1,16 +1,21 @@
-import { Express, Request, Response } from "express";
-import requireUser from "../middleware/requireUser";
-import validateResource from "../middleware/validateResource";
+import { Express } from "express";
 import { myTestScoresHandler } from "../controller/examinee.controller";
-import { createTestSchema, updateTestSchema } from "../schema/test.schema";
 
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 function routes(app: Express) {
     // app.post("/api/examinees", requireUser, getExamineeHandler);
+    /**
+    * @openapi
+    * /api/examinee:
+    *  get:
+    *     tags:
+    *     - Examinee
+    *     description: Responds examinee all tests score and rank
+    *     responses:
+    *       200:
+    *         description: App is up and running
+    */
     app.get("/api/examinee", myTestScoresHandler);
-    // app.put("/api/questions/:questionId", validateResource(updateQuestionSchema), updateQuestionHandler);
 }
 
 export default routes;

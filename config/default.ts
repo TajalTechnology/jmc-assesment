@@ -2,7 +2,8 @@ export default {
   port: 1337,
   dbUri: "mongodb://localhost:27017/rest-api-tutorial",
   saltWorkFactor: 10,
-  accessTokenTtl: "15m",
+  accessTokenTtl: "115m",
+  fileBasePath: "/home/taj/Desktop/Testing-Express-REST-API/uploads/",
   refreshTokenTtl: "1y",
   publicKey: `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXzZerpx9qdaelwt1U7NCpWXQK
