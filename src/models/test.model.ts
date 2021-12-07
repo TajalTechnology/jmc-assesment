@@ -19,11 +19,8 @@ const testSchema = new mongoose.Schema(
         testCreator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         filePath: { type: String, required: true },
     },
-    {
-        timestamps: true,
-    }
+    { timestamps: true }
 );
 
 const TestModel = mongoose.model<TestDocument>("Test", testSchema);
-
 export default TestModel;

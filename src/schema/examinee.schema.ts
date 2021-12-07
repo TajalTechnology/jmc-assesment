@@ -1,41 +1,20 @@
 import { object, number, string, TypeOf } from "zod";
+import _responce from "../utils/responce";
+
+
 const payload = {
   body: object({
-    ip: string({
-      required_error: "Title is required",
-    }),
-    username: string({
-      required_error: "Description is required",
-    }).min(120, "Description should be at least 120 characters long"),
+    ip: string({ required_error: _responce.required }),
+    username: string({ required_error: _responce.required })
+      .min(120, _responce.tooShort),
   }),
 };
 
 const params = {
   params: object({
-    productId: string({
-      required_error: "productId is required",
-    }),
+    productId: string({ required_error: _responce.required }),
   }),
 };
-// x
-export const createExamineeSchema = object({
-  ...payload,
-});
 
-// export const updateProductSchema = object({
-//   ...payload,
-//   ...params,
-// });
-
-// export const deleteProductSchema = object({
-//   ...params,
-// });
-
-// export const getProductSchema = object({
-//   ...params,
-// });
-
+export const createExamineeSchema = object({ ...payload });
 export type CreateExamineeInput = TypeOf<typeof createExamineeSchema>;
-// export type UpdateProductInput = TypeOf<typeof updateProductSchema>;
-// export type ReadProductInput = TypeOf<typeof getProductSchema>;
-// export type DeleteProductInput = TypeOf<typeof deleteProductSchema>;

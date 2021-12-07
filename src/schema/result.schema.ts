@@ -1,47 +1,26 @@
 import { object, number, string, TypeOf, array, any } from "zod";
+import _responce from "../utils/responce";
+
+
+/* BODY_VALIDATION(answers,testId,score) */
 const payload = {
+
   body: object({
-    // z.string().array().min(5);
-    // correctAnswer: string().array(),
-    // wrongAnswer: string().array(),
-    // answers: object().array(),
-    answers: object({
-      // required_error: "Title is required",
-    }).array(),
-    testId: string({
-      required_error: "Title is required",
-    }),
-    // score: number(),
-    // rank: number(),
+    answers: object({}).array(),
+    testId: string({ required_error: _responce.required }),
   }),
+
 };
 
+/* PARAMS_VALIDATION */
 const params = {
   params: object({
-    testId: string({
-      required_error: "questionId is required",
-    }),
+    testId: string({ required_error: _responce.required }),
   }),
 };
 
-export const createResultSchema = object({
-  ...payload
-});
-
-export const updateQuestionSchema = object({
-  ...payload,
-  ...params,
-});
-
-// export const deleteProductSchema = object({
-//   ...params,
-// });
-
-// export const getProductSchema = object({
-//   ...params,
-// });
+export const createResultSchema = object({ ...payload });
+export const updateQuestionSchema = object({ ...payload, ...params });
 
 export type CreateResultInput = TypeOf<typeof createResultSchema>;
 export type UpdateQuestionInput = TypeOf<typeof updateQuestionSchema>;
-// export type ReadProductInput = TypeOf<typeof getProductSchema>;
-// export type DeleteProductInput = TypeOf<typeof deleteProductSchema>;

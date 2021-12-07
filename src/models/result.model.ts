@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-import { string } from "zod";
-import { UserDocument } from "./user.model";
 import { TestDocument } from "./test.model";
 import { ExamineeDocument } from "./examinee.model";
 
 export interface ResultDocument extends mongoose.Document {
-    // _id:string,
+
     correctAnswer: string[];
     wrongAnswer: string[];
     answers: string[];
@@ -27,11 +25,8 @@ const resultSchema = new mongoose.Schema(
         testId: { type: mongoose.Schema.Types.ObjectId, ref: "Test" },
         examineeId: { type: mongoose.Schema.Types.ObjectId, ref: "Examinee" },
     },
-    {
-        timestamps: true,
-    }
+    { timestamps: true }
 );
 
 const ResultModel = mongoose.model<ResultDocument>("Result", resultSchema);
-
 export default ResultModel;

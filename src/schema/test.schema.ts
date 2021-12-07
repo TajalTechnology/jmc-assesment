@@ -1,4 +1,5 @@
-import { object, number, string, TypeOf, array, date } from "zod";
+import { object, number, string, TypeOf } from "zod";
+import _responce from "../utils/responce";
 
 /**
  * @openapi
@@ -42,50 +43,27 @@ import { object, number, string, TypeOf, array, date } from "zod";
  *        updatedAt:
  *          type: string
  */
+
+/* TEST_INPUT_VALIDATION(testName,duration,questionLimit,filePath) */
 const payload = {
+
   body: object({
-    testName: string({
-      required_error: "Title is required",
-    }),
-    duration: number({
-      required_error: "Title is required",
-    }),
-    questionLimit: number({
-      required_error: "Title is required",
-    }),
-    filePath: string({
-      required_error: "Title is required",
-    }),
+    testName: string({ required_error: _responce.required }),
+    duration: number({ required_error: _responce.required }),
+    questionLimit: number({ required_error: _responce.required }),
+    filePath: string({ required_error: _responce.required }),
   }),
 };
 
-
+/* PARAMS ID VALIDATION */
 const params = {
-  params: object({
-    testId: string({
-      required_error: "questionId is required",
-    }),
-  }),
+  params: object({ testId: string({ required_error: _responce.paramsId }) }),
 };
 
-export const createTestSchema = object({
-  ...payload,
-});
-
-export const updateTestSchema = object({
-  ...payload,
-  ...params,
-});
-
-// export const deleteProductSchema = object({
-//   ...params,
-// });
-
-export const getTestSchema = object({
-  ...params,
-});
+export const createTestSchema = object({ ...payload });
+export const updateTestSchema = object({ ...payload, ...params });
+export const getTestSchema = object({ ...params });
 
 export type CreateTestInput = TypeOf<typeof createTestSchema>;
 export type UpdateTestInput = TypeOf<typeof updateTestSchema>;
 export type ReadTestInput = TypeOf<typeof getTestSchema>;
-// export type DeleteProductInput = TypeOf<typeof deleteProductSchema>;

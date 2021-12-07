@@ -23,11 +23,8 @@ const questionSchema = new mongoose.Schema(
         answer: { type: String, required: true },
         setId: { type: mongoose.Schema.Types.ObjectId, ref: "Test" },
     },
-    {
-        timestamps: true,
-    }
+    { timestamps: true }
 );
 
 const QuestionModel = mongoose.model<QuestionDocument>("Question", questionSchema, 'questions');
-
 export default QuestionModel;

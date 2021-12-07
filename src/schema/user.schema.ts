@@ -1,22 +1,20 @@
 import { object, string, TypeOf } from "zod";
+import _responce from "../utils/responce";
 
+
+/* USER_INPUT_VALIDATION(name,password,email,passwordConfirmation) */
 export const createUserSchema = object({
   body: object({
-    name: string({
-      required_error: "Name is required",
-    }),
-    password: string({
-      required_error: "Name is required",
-    }).min(6, "Password too short - should be 6 chars minimum"),
-    passwordConfirmation: string({
-      required_error: "passwordConfirmation is required",
-    }),
-    email: string({
-      required_error: "Email is required",
-    }).email("Not a valid email"),
+
+    name: string({ required_error: _responce.required }),
+    password: string({ required_error: _responce.required }).min(6, _responce.tooShort),
+    passwordConfirmation: string({ required_error: _responce.required }),
+    email: string({ required_error: _responce.required }).email(_responce.notValid),
+
   }).refine((data) => data.password === data.passwordConfirmation, {
-    message: "Passwords do not match",
+    message: _responce.passwordNoMatch,
     path: ["passwordConfirmation"],
+
   }),
 });
 
