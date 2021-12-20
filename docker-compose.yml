@@ -1,0 +1,70 @@
+version: '3'
+services:
+  node:
+    restart: always
+    build: .
+    ports:
+      - 1337:1337
+    volumes:
+      - ./:/code
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+volumes:
+ mongodb:
+
+
+
+
+
+# version: "3"
+# 
+# services:
+  # db:
+    # image: mongo
+    # restart: always
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: password
+# 
+  # app:
+    # image: tajalislam/new
+    # build: .
+    # command: npm run dev
+# 
+    # volumes:
+      # - .:/app/backend
+    # ports:
+      # - "1337:1337"
+    # depends_on:
+      # - db
+
+# version: '3.7'
+# services:
+#   rest-api:
+#     container_name: rest-api
+#     restart: unless-stopped
+#     # environment:
+#     #   - NODE_ENV=production
+#     build:
+#         context: ./ 
+
+#   caddy:
+#     image: caddy/caddy:2.2.1-alpine
+#     container_name: caddy-service
+#     restart: unless-stopped
+#     ports:
+#       - "80:80"
+#       - "443:443"
+#     volumes:
+#     - $PWD/Caddyfile:/etc/caddy/Caddyfile
+#     - $PWD/site:/srv
+#     - caddy_data:/data
+#     - caddy_config:/config
+
+# volumes:
+#   caddy_data:
+#   caddy_config:
