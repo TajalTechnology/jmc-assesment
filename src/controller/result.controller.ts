@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateResultInput, UpdateQuestionInput } from "../schema/result.schema";
-import { createResult, findResult, findAndUpdateResult } from "../service/result.service";
+import { createResult, findResult, findAndUpdateResult, startResult } from "../service/result.service";
 
 
 export async function createResultHandler(req: Request<{}, {}, CreateResultInput["body"]>, res: Response) {
@@ -8,6 +8,15 @@ export async function createResultHandler(req: Request<{}, {}, CreateResultInput
 
     const question = await createResult(req.body);
     return res.send(question);
+
+  } catch (error) { console.log(error) };
+};
+
+export async function startResultHandler(req: Request<{}, {}, CreateResultInput["body"]>, res: Response) {
+  try {
+
+    const quezStart = await startResult(req.body);
+    return res.send(quezStart);
 
   } catch (error) { console.log(error) };
 };

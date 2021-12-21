@@ -25,6 +25,7 @@
     "pino-pretty": "^7.0.1",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.2.0",
+    "yamljs": "^0.3.0",
     "zod": "^3.9.5"
   },
   "devDependencies": {

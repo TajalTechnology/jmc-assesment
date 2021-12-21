@@ -20,6 +20,7 @@ export async function validatePassword({ email, password }: {
   const user = await UserModel.findOne({ email });
 
   if (!user) return false;
+  console.log(user)
   const inValid = await user.comparePassword(password);
   if (!inValid) return false;
 
