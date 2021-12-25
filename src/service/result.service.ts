@@ -83,8 +83,6 @@ export async function startResult(input: DocumentDefinition<Omit<ResultDocument,
 
   input = { ...input, startTime, endTime, examineeId };
 
-  // age: { $gt: 17, $lt: 66 },
-
   const findContinueTest = await ResultModel.findOne({
     $and: [
       { endTime: { $gt: startTime } },
@@ -99,11 +97,6 @@ export async function startResult(input: DocumentDefinition<Omit<ResultDocument,
     message = `Your test is start from now:${startTime}`;
   }
 
-  // console.log(findContinueTest);
-
-  // console.log(input);
-  // const startResult = await ResultModel.create(input)
-  // console.log(startResult)
   return message;
 
 };

@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "f2a57d7d-8f0e-465b-a0f6-778d991e8377",
+		"name": "Groots-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"md@gmail.com\",\n    \"name\":\"Tajal2\",\n    \"password\":\"123456\",\n    \"passwordConfirmation\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1339/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token-sessions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"md@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1339/api/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tests",
+			"item": [
+				{
+					"name": "tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1339/api/tests/61c72bf5f3a99e173df1d3b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"tests",
+								"61c72bf5f3a99e173df1d3b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tests",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"productId\", jsonData.productId);",
+									"",
+									"",
+									"const newAccessToken = responseHeaders['x-access-token']",
+									"",
+									"if(newAccessToken){",
+									"    console.log('Set new access token')",
+									"postman.setEnvironmentVariable(\"accessToken\", newAccessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-refresh",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWMxZjBkMGE3NmYwYzljZDY0MDlhYzIiLCJlbWFpbCI6Im1kQGdtYWlsLmNvbSIsIm5hbWUiOiJUYWphbDIiLCJjcmVhdGVkQXQiOiIyMDIxLTEyLTIxVDE1OjIwOjQ4LjA1MVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTEyLTIxVDE1OjIwOjQ4LjA1MVoiLCJfX3YiOjAsInNlc3Npb24iOiI2MWM3MmFkMjVkNGNhNmM2YTQwZGZjMWEiLCJpYXQiOjE2NDA0NDI1NzgsImV4cCI6MTY3MjAwMDE3OH0.acRLUN0QozSv7zEElObVoeovaoQ86x11SGZD1lqR6TkqZ-l3lnJfVfteuUuevOlddpQE-hP0UCMAkroKem5KEoSxesjicgHkvY9TwGqkWFUdTUEN9VC4mf1YouS2D7T6fHR_ogOsWApOXd8f85Zz-m-aYEZmWm0JUVJ4ox7AtqM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "testName",
+									"value": "Bangla",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "questionLimit",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "question",
+									"type": "file",
+									"src": "/home/taj/Downloads/quiz.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1339/api/tests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "my-tests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1339/api/my-tests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"my-tests"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "results",
+			"item": [
+				{
+					"name": " results",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"answers\": [\n        {\n            \"_id\": \"61c1f40b4c6b2c0b265d42ec\",\n            \"answer\": \"Node  envirement\"\n        },\n        {\n            \"_id\": \"61ad2dfe9764be94adb7f0d4\",\n            \"answer\": \"no ne\"\n        },\n         {\n            \"_id\": \"61ad2dfe9764be94adb7f0d5\",\n            \"answer\": \"program\"\n        },\n        {\n            \"_id\": \"61c1f40b4c6b2c0b265d42ed\",\n            \"answer\": \"none\"\n        }\n    ],\n    \"testId\":\"61c72bf5f3a99e173df1d3b4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1339/api/results",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "results-start",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"testId\":\"61c72bf5f3a99e173df1d3b4\"\n        \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1339/api/test-start",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1339",
+							"path": [
+								"api",
+								"test-start"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

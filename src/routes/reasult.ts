@@ -7,7 +7,7 @@ import { createResultHandler, startResultHandler } from "../controller/result.co
 
 function routes(app: Express) {
     app.post("/api/results", validateResource(createResultSchema), createResultHandler);
-    app.post("/api/results-start", startResultHandler);
+    app.post("/api/test-start", startResultHandler);
 }
 
 export default routes;

@@ -5,7 +5,6 @@ import logger from "../utils/logger";
 
 export async function createUserHandler(req: Request<{}, {}, CreateUserInput["body"]>, res: Response) {
   try {
-
     const user = await createUser(req.body);
     return res.status(200).json({ user });
 

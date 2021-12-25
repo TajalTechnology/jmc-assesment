@@ -1,48 +1,17 @@
-FROM node:12.18.1
-WORKDIR /app
-COPY ["package.json", "package-lock.json*", "./"]
-RUN yarn install
-COPY . .
-CMD ["npm", "run","dev"]
+FROM node:14
 
+WORKDIR src/app
 
-# FROM node:14
+COPY package.json ./
+COPY package-lock.json ./
 
-# ADD package.json /tmp/package.json
+RUN npm install
 
-# ADD yarn.lock /tmp/yarn.lock
+COPY ./ ./
 
-# RUN rm -rf build
+# Add bash
+# RUN apk add --no-cache bash
 
-# RUN cd /tmp && yarn install
+EXPOSE 1337
 
-# ADD ./ /src
-
-# RUN rm -rf src/node_modules && cp -a /tmp/node_modules /src/
-
-# WORKDIR /src
-
-# # RUN yarn build
-
-# CMD ["node", "build/src/app.js"]
-
-
-
-
-
-
-
-
-
-
-
-
-
-# FROM node:10.22.0
-# WORKDIR /usr/app
-# COPY package.json ./
-# COPY package-lock.json ./
-# RUN npm install
-# COPY ./ ./
-# EXPOSE 3001
-# CMD ["node", "server.js"]
+CMD ["node", "src/app.js"]

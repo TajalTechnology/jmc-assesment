@@ -5,7 +5,14 @@ import { createTest, testDetails } from "../service/test.service";
 
 export async function createTestHandler(req: Request, res: Response) {
 
+  //input field's
   const body = req.body;
+
+  let filePath;
+  req.file ? filePath = req.file.path : null;
+
+  if (!req.file) return res.status(200).json({ message: "Upload your question file" });
+
   const test = await createTest({
     ...body,
     testCreator: res.locals.user._id,
