@@ -1,5 +1,5 @@
 export default {
-  port: 1339,
+  port: 1337,
   dbUri: "mongodb://localhost:27017/quiz",
   saltWorkFactor: 10,
   accessTokenTtl: "115m",
