@@ -29,6 +29,10 @@
     "prettier": "^2.6.0",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.2.0",
+<<<<<<< HEAD
+=======
+    "upload-groots": "^1.0.4",
+>>>>>>> 997c26f11854dd7ba997dc383f97067df6c3ddd6
     "yamljs": "^0.3.0",
     "zod": "^3.9.5"
   },
