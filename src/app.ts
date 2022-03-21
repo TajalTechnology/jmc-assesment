@@ -13,6 +13,6 @@ app.use('/question', express.static('upload/images'));
 app.listen(port, async () => {
 
   logger.info(`App is running at http://localhost:${port}`);
-  await connect();
+  // await connect();
   swaggerDocs(app, port);
 });
